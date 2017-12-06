@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import {FilmsComponent} from './films/films.component';
 import {FilmStartComponent} from './films/film-start/film-start.component';
 import {FilmEditComponent} from './films/film-edit/film-edit.component';
@@ -9,7 +9,6 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/films', pathMatch: 'full' },
   { path: 'films', component: FilmsComponent, children: [
     {path: '', component: FilmStartComponent},
-    {path: 'new', component: FilmEditComponent},
     {path: ':id', component: FilmDetailComponent},
     {path: ':id/edit', component: FilmEditComponent}
   ] }

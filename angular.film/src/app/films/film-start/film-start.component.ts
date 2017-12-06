@@ -1,4 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FilmService} from '../film.service';
 
 @Component({
   selector: 'app-film-start',
@@ -8,7 +10,9 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class FilmStartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filmService: FilmService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
   }

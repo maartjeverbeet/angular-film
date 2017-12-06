@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Film} from "../film.model";
-import {FilmService} from "../film.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Film} from '../film.model';
+import {FilmService} from '../film.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-film-detail',
@@ -21,7 +21,7 @@ export class FilmDetailComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
-          this.film = this.filmService.getFilm(this.id)
+          this.film = this.filmService.getFilm(this.id);
         }
       );
   }

@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Film} from '../../film.model';
+import {FilmService} from '../../film.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-film-item',
@@ -9,6 +11,10 @@ import {Film} from '../../film.model';
 export class FilmItemComponent implements OnInit {
   @Input() film: Film;
   @Input() index: number;
+
+  constructor(private filmService: FilmService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
