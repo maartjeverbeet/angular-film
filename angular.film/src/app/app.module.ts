@@ -14,6 +14,10 @@ import {HttpModule} from '@angular/http';
 import { FilmItemComponent } from './films/film-list/film-item/film-item.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FilmService} from './films/film.service';
+import { VoorstellingListComponent } from './voorstelling-list/voorstelling-list.component';
+import { VoorstellingListEditComponent } from './voorstelling-list/voorstelling-list-edit/voorstelling-list-edit.component';
+import {VoorstellingListService} from './voorstelling-list/voorstelling-list.service';
+import {DropdownDirective} from './shared/dropdown.directive';
 
 
 @NgModule({
@@ -25,7 +29,10 @@ import {FilmService} from './films/film.service';
     FilmDetailComponent,
     FilmEditComponent,
     FilmStartComponent,
-    FilmItemComponent
+    FilmItemComponent,
+    VoorstellingListComponent,
+    VoorstellingListEditComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
@@ -33,7 +40,7 @@ import {FilmService} from './films/film.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [FilmService],
+  providers: [FilmService, VoorstellingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
