@@ -3,30 +3,75 @@
  */
 import {Film} from './film.model';
 import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs/Subject';
+import {Http} from '@angular/http';
+import {environment, environment} from '../../environments/environment';
 
 @Injectable()
 export class FilmService {
+  filmsChanged = new Subject<Film[]>();
+  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private films: Film[];
 
-  private films: Film[] = [
-    new Film (
-      'Soof',
-      'Soof is een Nederlandse romantische komedie uit 2013 onder regie van Antoinette Beumer.',
-      'https://media.pathe.nl/nocropthumb/620x955/gfx_content/posters/soof1.jpg'
-    ),
-    new Film (
-      'Soof 2',
-      'Soof is een Nederlandse romantische komedie uit 2013 onder regie van Antoinette Beumer.',
-      'https://media.pathe.nl/thumb/180x254/gfx_content/posters/soof2poster123.jpg'
-    )
-  ];
+  constructor(private http: Http) {}
 
-  constructor() {}
-
-  getFilms() {
-    return this.films.slice();
+  getFilm(index: string) {
+    return this.http.get(environment.serverUrl + '/films/' + index, { headers: this.headers })
+      .toPromise()
+      .then(response => {
+        return response.json() as Film;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
   }
 
-  getFilm(id: number) {
-    return this.films[id];
+  getFilms() {
+    return this.http.get(environment.serverUrl + '/films', { headers: this.headers })
+      .toPromice()
+      .then(response => {
+        this.films = response.json() as Film[];
+        return response.json() as Film[];
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  addFilm(film: Film) {
+    this.http.post(environment.serverUrl + '/films', film , { headers: this.headers })
+      .toPromis()
+      .then(response => {
+        this.filmsChanged.next(this.films.slice());
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  updateFilm(index: string, newFilm: Film) {
+    this.http.put(environment.serverUrl + '/films/' + index, newFilm , { headers: this.headers })
+      .toPromise()
+      .then(response => {
+        this.filmsChanged.next(this.films.slice());
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
+  }
+
+  deleteFilm(index: string) {
+    this.http.delete(environment.serverUrl + '/films/' + index, { headers: this.headers })
+      .toPromise()
+      .then(response => {
+        this.filmsChanged.next(this.films.slice());
+      })
+    .catch(error => {
+      return this.handleError(error);
+    });
+  }
+
+  private handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error);
   }
 }
