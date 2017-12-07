@@ -18,6 +18,8 @@ import { VoorstellingListComponent } from './voorstelling-list/voorstelling-list
 import { VoorstellingListEditComponent } from './voorstelling-list/voorstelling-list-edit/voorstelling-list-edit.component';
 import {VoorstellingListService} from './voorstelling-list/voorstelling-list.service';
 import {DropdownDirective} from './shared/dropdown.directive';
+import { ZalenComponent } from './zalen/zalen.component';
+import {ZaalService} from './zalen/zaal.service';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import {DropdownDirective} from './shared/dropdown.directive';
     FilmItemComponent,
     VoorstellingListComponent,
     VoorstellingListEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    ZalenComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import {DropdownDirective} from './shared/dropdown.directive';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [FilmService, VoorstellingListService],
+  providers: [FilmService, VoorstellingListService, ZaalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
