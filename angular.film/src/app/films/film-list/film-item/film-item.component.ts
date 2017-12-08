@@ -10,13 +10,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class FilmItemComponent implements OnInit {
   @Input() film: Film;
-  @Input() index: number;
+  @Input() index: string;
 
   constructor(private filmService: FilmService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.index = this.film._id;
   }
 
 }
