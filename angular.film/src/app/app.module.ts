@@ -9,7 +9,7 @@ import { FilmListComponent } from './films/film-list/film-list.component';
 import { FilmDetailComponent } from './films/film-detail/film-detail.component';
 import { FilmEditComponent } from './films/film-edit/film-edit.component';
 import { FilmStartComponent } from './films/film-start/film-start.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import { FilmItemComponent } from './films/film-list/film-item/film-item.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -40,6 +40,7 @@ import {ZaalService} from './zalen/zaal.service';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

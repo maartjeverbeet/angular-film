@@ -4,8 +4,8 @@
 import {Film} from './film.model';
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
-import {Http} from '@angular/http';
-import {environment, environment} from '../../environments/environment';
+import {Http, Headers} from '@angular/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class FilmService {
@@ -28,7 +28,7 @@ export class FilmService {
 
   getFilms() {
     return this.http.get(environment.serverUrl + '/films', { headers: this.headers })
-      .toPromice()
+      .toPromise()
       .then(response => {
         this.films = response.json() as Film[];
         return response.json() as Film[];
@@ -40,7 +40,7 @@ export class FilmService {
 
   addFilm(film: Film) {
     this.http.post(environment.serverUrl + '/films', film , { headers: this.headers })
-      .toPromis()
+      .toPromise()
       .then(response => {
         this.filmsChanged.next(this.films.slice());
       })

@@ -10,7 +10,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 })
 export class FilmDetailComponent implements OnInit {
   film: Film;
-  id: number;
+  id: string;
 
   constructor(private filmService: FilmService,
               private route: ActivatedRoute,
@@ -20,8 +20,10 @@ export class FilmDetailComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.film = this.filmService.getFilm(this.id);
+          this.id = params['id'];
+          this.filmService.getFilm(this.id)
+            .then(film => this.film = film)
+            .catch(error => console.log(error));
         }
       );
   }

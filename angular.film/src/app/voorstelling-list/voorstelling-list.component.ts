@@ -9,19 +9,28 @@ import {VoorstellingListService} from './voorstelling-list.service';
   styleUrls: ['./voorstelling-list.component.css']
 })
 export class VoorstellingListComponent implements OnInit, OnDestroy {
-  voorstellingen: Voorstelling[];
+  voorstellingen: Voorstelling[] = [];
   private subscription: Subscription;
 
   constructor(private vService: VoorstellingListService) { }
 
   ngOnInit() {
-    this.voorstellingen = this.vService.getVoorstellingen();
     this.subscription = this.vService.voorstellingenChanged
       .subscribe(
         (voorstellingen: Voorstelling[]) => {
-          this.voorstellingen = voorstellingen;
+          this.vService.getVoorstellingen()
+            .then(res => {
+              this.voorstellingen = res;
+            });
         }
       );
+    this.vService.getVoorstellingen()
+      .then(voorstellingen => this.voorstellingen = voorstellingen)
+      .catch(error => console.log(error));
+  }
+
+  onEditItem(index: number) {
+    this.vService.startedEditing.next(index);
   }
 
   ngOnDestroy() {
