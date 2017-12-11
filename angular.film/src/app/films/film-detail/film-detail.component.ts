@@ -9,7 +9,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
   styleUrls: ['./film-detail.component.css']
 })
 export class FilmDetailComponent implements OnInit {
-  film: Film;
+  film: Film = new Film({imagePath: ''});
   id: string;
 
   constructor(private filmService: FilmService,
@@ -35,6 +35,10 @@ export class FilmDetailComponent implements OnInit {
   onDeleteFilm() {
     this.filmService.deleteFilm(this.id);
     this.router.navigate(['/films']);
+  }
+
+  onVoorstellingFilm() {
+
   }
 
 }

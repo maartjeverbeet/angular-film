@@ -48,10 +48,7 @@ export class FilmEditComponent implements OnInit {
     (<FormArray>this.filmForm.get('voorstellingen')).push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
-        'time': new FormControl(null, [
-          Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
-        ])
+        'time': new FormControl(null, Validators.required)
       })
     );
   }

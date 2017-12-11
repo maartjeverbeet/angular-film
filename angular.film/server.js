@@ -3,6 +3,8 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
+const api = require('./api/v1')
+
 const app = express();
 
 // Parsers for POST data
