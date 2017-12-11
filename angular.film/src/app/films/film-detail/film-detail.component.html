@@ -14,23 +14,11 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group"
-         appDropdown>
-      <button type="button" class="btn btn-primary dropdown-toggle">
-        Manage Film <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a style="cursor: pointer;" (click)="onEditFilm()">Edit film</a> </li>
-        <li><a style="cursor: pointer;" (click)="onDeleteFilm()">Delete film</a> </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
     {{ film.description }}
   </div>
 </div>
+<hr>
+<h4>Voorstellingen:</h4>
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
@@ -40,5 +28,21 @@
         {{ voorstelling.name}} - {{ voorstelling.time}} - {{ voorstelling.zaal}}
       </li>
     </ul>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group"
+         appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Manage Film <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="onVoorstelling()">Alle voorstellingen</a> </li>
+        <li><a style="cursor: pointer;" (click)="onEditFilm()">Edit film</a> </li>
+        <li><a style="cursor: pointer;" (click)="onDeleteFilm()">Delete film</a> </li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -30,6 +30,10 @@ export class FilmDetailComponent implements OnInit {
       );
   }
 
+  onVoorstelling() {
+    this.filmService.addVoorstellingenToVoorstellingList(this.film.voorstellingen);
+  }
+
   onEditFilm() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }

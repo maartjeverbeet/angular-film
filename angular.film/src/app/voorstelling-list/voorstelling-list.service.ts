@@ -33,7 +33,7 @@ export class VoorstellingListService {
 
   addVoorstelling(voorstelling: Voorstelling) {
     voorstelling._id = null;
-    this.http.post(environment.serverUrl + '/voorstellingen', voorstelling, {headers: this.headers})
+    this.http.post(environment.serverUrl + '/voorstlelingen', voorstelling , { headers: this.headers })
       .toPromise()
       .then(response => {
         this.voorstellingen.push(voorstelling);
@@ -53,7 +53,7 @@ export class VoorstellingListService {
   updateVoorstelling(index: number, newVoorstelling: Voorstelling) {
     const id = this.voorstellingen[index]._id;
     newVoorstelling._id = id;
-    this.http.put(environment.serverUrl + '/voorstellingen/' + id, newVoorstelling, { headers: this.headers })
+    this.http.put(environment.serverUrl + '/voorstellingen/' + id, newVoorstelling , { headers: this.headers })
       .toPromise()
       .then(response => {
         this.voorstellingenChanged.next(this.voorstellingen.slice());
@@ -61,6 +61,7 @@ export class VoorstellingListService {
       .catch(error => {
         return this.handleError(error);
       });
+
   }
 
   deleteVoorstelling(index: number) {
@@ -68,7 +69,7 @@ export class VoorstellingListService {
     this.http.delete(environment.serverUrl + '/voorstellingen/' + id, { headers: this.headers })
       .toPromise()
       .then(response => {
-        this.voorstellingen.slice(index, 1);
+        this.voorstellingen.splice(index, 1);
         this.voorstellingenChanged.next(this.voorstellingen.slice());
       })
       .catch(error => {
@@ -80,3 +81,5 @@ export class VoorstellingListService {
     return Promise.reject(error.message || error);
   }
 }
+
+

@@ -10,9 +10,7 @@ import {FilmService} from '../film.service';
 })
 export class FilmStartComponent implements OnInit {
 
-  constructor(private filmService: FilmService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
   }

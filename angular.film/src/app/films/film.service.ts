@@ -6,6 +6,8 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Http, Headers} from '@angular/http';
 import {environment} from '../../environments/environment';
+import {Voorstelling} from '../shared/voorstelling.model';
+import {VoorstellingListService} from '../voorstelling-list/voorstelling-list.service';
 
 @Injectable()
 export class FilmService {
@@ -13,7 +15,8 @@ export class FilmService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private films: Film[];
 
-  constructor(private http: Http) {}
+  constructor(private vService: VoorstellingListService,
+              private http: Http) {}
 
   getFilm(index: string) {
     return this.http.get(environment.serverUrl + '/films/' + index, { headers: this.headers })
@@ -69,6 +72,10 @@ export class FilmService {
     .catch(error => {
       return this.handleError(error);
     });
+  }
+
+  addVoorstellingenToVoorstellingList(voorstellingen: Voorstelling[]) {
+    this.vService.addVoorstellingen(voorstellingen);
   }
 
   private handleError(error: any): Promise<any> {
