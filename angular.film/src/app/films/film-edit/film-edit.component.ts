@@ -51,7 +51,8 @@ export class FilmEditComponent implements OnInit {
         'time': new FormControl(null, [
           Validators.required,
           Validators.pattern(/^[1-9]+[0-9]*$/)
-        ])
+        ]),
+        'zaal': new FormControl(null, Validators.required)
       })
     );
   }
@@ -81,7 +82,8 @@ export class FilmEditComponent implements OnInit {
                   'time': new FormControl(voorstelling.time, [
                     Validators.required,
                     Validators.pattern(/^[1-9]+[0-9]*$/)
-                  ])
+                  ]),
+                  'zaal': new FormControl(voorstelling.zaal, Validators.required)
                 })
               );
             }

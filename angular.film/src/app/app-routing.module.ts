@@ -11,6 +11,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/films', pathMatch: 'full' },
   { path: 'films', component: FilmsComponent, children: [
     {path: '', component: FilmStartComponent},
+    {path: 'new', component: FilmEditComponent},
     {path: ':id', component: FilmDetailComponent},
     {path: ':id/edit', component: FilmEditComponent}
   ] },

@@ -31,4 +31,14 @@
     {{ film.description }}
   </div>
 </div>
-<button class="submit" class="btn btn-primary">Voorstellingen</button>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let voorstelling of film.voorstellingen">
+        {{ voorstelling.name}} - {{ voorstelling.time}} - {{ voorstelling.zaal}}
+      </li>
+    </ul>
+  </div>
+</div>

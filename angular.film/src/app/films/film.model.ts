@@ -1,11 +1,14 @@
+import {Voorstelling} from '../shared/voorstelling.model';
 /**
  * Created by maartje on 4-12-2017.
  */
 export class Film {
+
   private id: string;
   private _name: string;
   private _description: string;
   private _imagePath: string;
+  private _voorstellingen: Voorstelling[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -41,5 +44,13 @@ export class Film {
 
   public set imagePath(i: string) {
     this._imagePath = i;
+  }
+
+  public get voorstellingen(): Voorstelling[] {
+    return this._voorstellingen;
+  }
+
+  public set voorstellingen(value: Voorstelling[]) {
+    this._voorstellingen = value;
   }
 }
