@@ -7,7 +7,7 @@ import {Subject} from 'rxjs/Subject';
 import {Http, Headers} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Voorstelling} from '../shared/voorstelling.model';
-import {VoorstellingListService} from '../voorstelling-list/voorstelling-list.service';
+import {VoorstellingListService} from '../voorstelling/voorstelling.service';
 
 @Injectable()
 export class FilmService {

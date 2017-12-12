@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ voorstellingen.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{voorstelling.time}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    {{voorstelling.zaal}}
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <div
+      class="btn-group"
+      appDropdown>
+      <button
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        Manage Voorstellingen <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer;" (click)="onEditVoorstelling()">Edit voorstelling</a> </li>
+        <li><a style="cursor: pointer;" (click)="onDeleteVoorstelling()">Delete voorstelling</a> </li>
+      </ul>
+    </div>
+  </div>
+</div>

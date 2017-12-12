@@ -1,24 +1,24 @@
 
 import {Subject} from 'rxjs/Subject';
-import {Voorstelling} from '../shared/voorstelling.model';
 import {Http, Headers} from '@angular/http';
-import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {Voorstelling} from '../shared/voorstelling.model';
+import {toPromise} from 'rxjs/operator/toPromise';
 
 @Injectable()
 export class VoorstellingListService {
   voorstellingenChanged = new Subject<Voorstelling[]>();
-  startedEditing = new Subject<number>();
   private headers = new Headers({ 'Content-Type': 'application/json' });
   private voorstellingen: Voorstelling[];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private vService: VoorstellingListService) { }
 
   getVoorstellingen() {
     return this.http.get(environment.serverUrl + '/voorstellingen', { headers: this.headers })
       .toPromise()
       .then(response => {
-        console.dir(response.json());
         this.voorstellingen = response.json() as Voorstelling[];
         return response.json() as Voorstelling[];
       })
@@ -27,16 +27,21 @@ export class VoorstellingListService {
       });
   }
 
-  getVoorstelling(index: number) {
-    return this.voorstellingen[index];
+  getVoorstelling(index: string) {
+    return this.http.get(environment.serverUrl + '/voorstelling/' + index, { headers: this.headers})
+    .toPromise()
+      .then(response => {
+        return response.json() as Voorstelling;
+      })
+      .catch(error => {
+        return this.handleError(error);
+      });
   }
 
   addVoorstelling(voorstelling: Voorstelling) {
-    voorstelling._id = null;
     this.http.post(environment.serverUrl + '/voorstellingen', voorstelling , { headers: this.headers })
       .toPromise()
       .then(response => {
-        this.voorstellingen.push(voorstelling);
         this.voorstellingenChanged.next(this.voorstellingen.slice());
       })
       .catch(error => {
@@ -50,10 +55,8 @@ export class VoorstellingListService {
     }
   }
 
-  updateVoorstelling(index: number, newVoorstelling: Voorstelling) {
-    const id = this.voorstellingen[index]._id;
-    newVoorstelling._id = id;
-    this.http.put(environment.serverUrl + '/voorstellingen/' + id, newVoorstelling , { headers: this.headers })
+  updateVoorstelling(index: string, newVoorstelling: Voorstelling) {
+    this.http.put(environment.serverUrl + '/voorstellingen/' + index, newVoorstelling , { headers: this.headers })
       .toPromise()
       .then(response => {
         this.voorstellingenChanged.next(this.voorstellingen.slice());
@@ -64,12 +67,10 @@ export class VoorstellingListService {
 
   }
 
-  deleteVoorstelling(index: number) {
-    const id = this.voorstellingen[index]._id;
-    this.http.delete(environment.serverUrl + '/voorstellingen/' + id, { headers: this.headers })
+  deleteVoorstelling(index: string) {
+    this.http.delete(environment.serverUrl + '/voorstellingen/' + index, { headers: this.headers })
       .toPromise()
       .then(response => {
-        this.voorstellingen.splice(index, 1);
         this.voorstellingenChanged.next(this.voorstellingen.slice());
       })
       .catch(error => {

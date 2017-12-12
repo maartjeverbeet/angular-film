@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Film} from '../film.model';
 import {FilmService} from '../film.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {VoorstellingListService} from '../../voorstelling-list/voorstelling-list.service';
+import {VoorstellingListService} from '../../voorstelling/voorstelling.service';
 
 @Component({
   selector: 'app-film-detail',

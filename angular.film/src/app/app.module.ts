@@ -14,12 +14,16 @@ import {HttpModule} from '@angular/http';
 import { FilmItemComponent } from './films/film-list/film-item/film-item.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FilmService} from './films/film.service';
-import { VoorstellingListComponent } from './voorstelling-list/voorstelling-list.component';
-import { VoorstellingListEditComponent } from './voorstelling-list/voorstelling-list-edit/voorstelling-list-edit.component';
-import {VoorstellingListService} from './voorstelling-list/voorstelling-list.service';
+import { VoorstellingListComponent } from './voorstelling/voorstelling-list/voorstelling-list.component';
+import { VoorstellingListEditComponent } from './voorstelling/voorstelling-list-edit/voorstelling-list-edit.component';
+import {VoorstellingListService} from './voorstelling/voorstelling.service';
 import {DropdownDirective} from './shared/dropdown.directive';
 import { ZalenComponent } from './zalen/zalen.component';
 import {ZaalService} from './zalen/zaal.service';
+import { VoorstellingComponent } from './voorstelling/voorstelling.component';
+import { VoorstellingDetailComponent } from './voorstelling/voorstelling-detail/voorstelling-detail.component';
+import { VoorstellingStartComponent } from './voorstelling/voorstelling-start/voorstelling-start.component';
+import { VoorstellingListItemComponent } from './voorstelling/voorstelling-list/voorstelling-list-item/voorstelling-list-item.component';
 
 
 @NgModule({
@@ -35,7 +39,11 @@ import {ZaalService} from './zalen/zaal.service';
     VoorstellingListComponent,
     VoorstellingListEditComponent,
     DropdownDirective,
-    ZalenComponent
+    ZalenComponent,
+    VoorstellingComponent,
+    VoorstellingDetailComponent,
+    VoorstellingStartComponent,
+    VoorstellingListItemComponent
   ],
   imports: [
     BrowserModule,

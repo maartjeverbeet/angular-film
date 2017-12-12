@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Voorstelling} from '../shared/voorstelling.model';
 import {Subscription} from 'rxjs/Subscription';
-import {VoorstellingListService} from './voorstelling-list.service';
+import {VoorstellingListService} from '../voorstelling.service';
+import {Voorstelling} from '../../shared/voorstelling.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-voorstelling-list',
@@ -9,10 +10,12 @@ import {VoorstellingListService} from './voorstelling-list.service';
   styleUrls: ['./voorstelling-list.component.css']
 })
 export class VoorstellingListComponent implements OnInit, OnDestroy {
-  voorstellingen: Voorstelling[] = [];
-  private subscription: Subscription;
+  voorstellingen: Voorstelling[];
+  subscription: Subscription;
 
-  constructor(private vService: VoorstellingListService) { }
+  constructor(private vService: VoorstellingListService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.subscription = this.vService.voorstellingenChanged
@@ -29,8 +32,8 @@ export class VoorstellingListComponent implements OnInit, OnDestroy {
       .catch(error => console.log(error));
   }
 
-  onEditItem(index: number) {
-    this.vService.startedEditing.next(index);
+  onNewVoorstelling() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
   ngOnDestroy() {

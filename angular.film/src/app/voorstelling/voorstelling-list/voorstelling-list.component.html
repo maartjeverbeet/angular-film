@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-succes" (click)="onNewVoorstelling()">New voorstelling</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-voorstelling-list-item
+      *ngFor="let voorstellingEl of voorstellingen; let i = index"
+      [voorstelling]="voorstellingEl"
+      [index]="i"></app-voorstelling-list-item>
+  </div>
+</div>
