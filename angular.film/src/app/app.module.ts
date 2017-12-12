@@ -20,7 +20,7 @@ import {VoorstellingListService} from './voorstelling-list/voorstelling-list.ser
 import {DropdownDirective} from './shared/dropdown.directive';
 import { ZalenComponent } from './zalen/zalen.component';
 import {ZaalService} from './zalen/zaal.service';
-
+import { ZaalEditComponent } from './zalen/zaal-edit/zaal-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import {ZaalService} from './zalen/zaal.service';
     VoorstellingListComponent,
     VoorstellingListEditComponent,
     DropdownDirective,
-    ZalenComponent
+    ZalenComponent,
+    ZaalEditComponent,
   ],
   imports: [
     BrowserModule,

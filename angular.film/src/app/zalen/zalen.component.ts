@@ -1,31 +1,39 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Zaal} from '../shared/zaal.model';
-import {Subscription} from 'rxjs/Subscription';
 import {ZaalService} from './zaal.service';
+import {Subscription} from 'rxjs/Subscription';
+import {Zaal} from '../shared/zaal.model';
 
 @Component({
   selector: 'app-zalen',
   templateUrl: './zalen.component.html',
   styleUrls: ['./zalen.component.css']
 })
-export class ZalenComponent implements OnInit, OnDestroy {
-  zalen: Zaal[];
+export class ZalenComponent implements OnInit, OnDestroy{
+  zalen: Zaal[] = [];
   private subscription: Subscription;
 
-  constructor(private zService: ZaalService) { }
+  constructor(private zalenService: ZaalService) { }
 
   ngOnInit() {
-    this.zalen = this.zService.getZalen();
-    this.subscription = this.zService.zalenChanged
+    this.subscription = this.zalenService.zalenChanged
       .subscribe(
         (zalen: Zaal[]) => {
-          this.zalen = zalen;
+          this.zalenService.getZalen()
+            .then(res => {
+              this.zalen = res;
+            });
         }
       );
+    this.zalenService.getZalen()
+      .then(zalen => this.zalen = zalen)
+      .catch(error => console.log(error));
+  }
+
+  onEditZaal(index: number) {
+    this.zalenService.startedEditing.next(index);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

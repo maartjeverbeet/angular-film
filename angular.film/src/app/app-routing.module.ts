@@ -6,6 +6,7 @@ import {FilmDetailComponent} from './films/film-detail/film-detail.component';
 import {NgModule} from '@angular/core';
 import {VoorstellingListComponent} from './voorstelling-list/voorstelling-list.component';
 import {ZalenComponent} from './zalen/zalen.component';
+import {ZaalEditComponent} from './zalen/zaal-edit/zaal-edit.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/films', pathMatch: 'full' },
