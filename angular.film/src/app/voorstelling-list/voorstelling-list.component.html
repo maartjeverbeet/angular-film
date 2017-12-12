@@ -6,9 +6,10 @@
       <a
         class="list-group-item"
         style="cursor: pointer"
-        *ngFor="let voorstelling of voorstellingen"
+        *ngFor="let voorstelling of voorstellingen; let i = index"
+        (click)="onEditItem(i)"
       >
-        {{ voorstelling.name }} {{ voorstelling.time}} {{ voorstelling.zaal}}
+        Film: {{ voorstelling.name }} - {{ voorstelling.time}} uur - zaal {{ voorstelling.zaal}}
       </a>
     </ul>
   </div>

@@ -33,7 +33,7 @@ export class VoorstellingListService {
 
   addVoorstelling(voorstelling: Voorstelling) {
     voorstelling._id = null;
-    this.http.post(environment.serverUrl + '/voorstlelingen', voorstelling , { headers: this.headers })
+    this.http.post(environment.serverUrl + '/voorstellingen', voorstelling , { headers: this.headers })
       .toPromise()
       .then(response => {
         this.voorstellingen.push(voorstelling);

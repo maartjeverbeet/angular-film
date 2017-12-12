@@ -15,8 +15,7 @@ export class FilmDetailComponent implements OnInit {
 
   constructor(private filmService: FilmService,
               private route: ActivatedRoute,
-              private router: Router,
-              private vService: VoorstellingListService) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -32,6 +31,7 @@ export class FilmDetailComponent implements OnInit {
 
   onVoorstelling() {
     this.filmService.addVoorstellingenToVoorstellingList(this.film.voorstellingen);
+    this.router.navigate(['/voorstellingen']);
   }
 
   onEditFilm() {

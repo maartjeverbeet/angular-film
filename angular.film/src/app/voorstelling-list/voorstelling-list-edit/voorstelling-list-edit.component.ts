@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {VoorstellingListService} from '../voorstelling-list.service';
 import {Voorstelling} from '../../shared/voorstelling.model';
 import {NgForm} from '@angular/forms';

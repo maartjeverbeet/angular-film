@@ -4,7 +4,7 @@
       [src]="film.imagePath"
       alt="{{ film.name }}"
       class="img-responsive"
-      style="max-height: 100px;">
+      style="max-height: 300px;">
   </div>
 </div>
 <div class="row">
@@ -25,7 +25,7 @@
       <li
         class="list-group-item"
         *ngFor="let voorstelling of film.voorstellingen">
-        {{ voorstelling.name}} - {{ voorstelling.time}} - {{ voorstelling.zaal}}
+        Film: {{ voorstelling.name}} - {{ voorstelling.time}} uur - zaal: {{ voorstelling.zaal}}
       </li>
     </ul>
   </div>

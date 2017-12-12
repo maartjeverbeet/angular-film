@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FilmService} from '../film.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -7,8 +7,7 @@ import {Film} from '../film.model';
 @Component({
   selector: 'app-film-edit',
   templateUrl: './film-edit.component.html',
-  styleUrls: ['./film-edit.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./film-edit.component.css']
 })
 export class FilmEditComponent implements OnInit {
   id: string;
@@ -71,7 +70,7 @@ export class FilmEditComponent implements OnInit {
       this.filmService.getFilm(this.id)
         .then(film => {
           editfilm = film;
-          if (film['films']) {
+          if (film['voorstellingen']) {
             for (const voorstelling of film.voorstellingen) {
               filmVoorstellingen.push(
                 new FormGroup({
